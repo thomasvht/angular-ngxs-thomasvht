@@ -1,0 +1,13 @@
+<div class="flex">
+  <div class="ox-form__checkbox">
+    <input type="checkbox" class="ox-form__checkbox__input"
+           aria-describedby="todo-addingInput"
+           [formControl]="control" />
+    <label class="ox-form__checkbox__label">{{todo.title}}</label>
+  </div>
+  <div class="ox-button-group">
+    <button type="button" class="ox-button ox-button--primary" (click)="delete.emit(todo.id)"><span
+            class="ox-button__icon ox-button__icon--left ox-icon ox-icon--trash" aria-hidden="true"></span>
+      Remove</button>
+  </div>
+</div>

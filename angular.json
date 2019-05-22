@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "angular-ngxs-thomasvht"
+  "defaultProject": "angular-ngxs-thomasvht",
+  "cli": {
+    "defaultCollection": "@ngxs/schematics"
+  }
 }
