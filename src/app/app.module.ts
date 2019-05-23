@@ -6,6 +6,10 @@ import { AddTodoComponent } from './add-todo/add-todo.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoItemComponent } from './todo-item/todo-item.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {NgxsModule} from "@ngxs/store";
+import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
+import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
+import {TodosState} from "./statemanagement/todos/todos.state";
 
 @NgModule({
   declarations: [
@@ -16,7 +20,10 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
     imports: [
         BrowserModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgxsModule.forRoot([TodosState]),
+        NgxsReduxDevtoolsPluginModule.forRoot(),
+        NgxsLoggerPluginModule.forRoot()
     ],
   providers: [],
   bootstrap: [AppComponent]

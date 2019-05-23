@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs";
+import {Select, Store} from "@ngxs/store";
+import {TodoItem} from "../statemanagement/todos/todos.state";
+import {CompleteTodo, DeleteTodo} from "../statemanagement/todos/todos.actions";
 
 @Component({
   selector: 'app-todo-list',
@@ -7,19 +10,19 @@ import {Observable} from "rxjs";
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  todos$: Observable<any[]>;
+  @Select('ngxsStore.todos') todos$: Observable<Array<TodoItem>>;
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit() {
   }
 
   complete(todo: any) {
-    // this.todosService.complete(todo);
+    this.store.dispatch(new CompleteTodo(todo));
   }
 
   delete(id: any) {
-    // this.todosService.delete(id);
+    this.store.dispatch(new DeleteTodo(id));
   }
 
   trackByFn(index, todo) {

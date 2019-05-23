@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Store} from "@ngxs/store";
+import {AddTodo} from "../statemanagement/todos/todos.actions";
 
 @Component({
   selector: 'app-add-todo',
@@ -7,13 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTodoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit() {
   }
 
   add(input: HTMLInputElement) {
-    // this.todosService.add(input.value);
-    input.value = '';
+    this.store.dispatch(new AddTodo(input.value))
+    .subscribe(state => {
+      console.log(state);
+      input.value = '';
+    });
   }
 }
