@@ -1,7 +1,7 @@
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import {AddTodo, CompleteTodo, DeleteTodo} from './todos.actions';
-// var uuid = require('uuid-v4');
-import * as uuid from 'uuid-v4';
+var uuid = require('uuid-v4');
+// import * as uuid from 'uuid-v4';
 
 export class TodoItem {
   constructor(public id: string, public title: string, public completed: boolean) {
@@ -38,10 +38,10 @@ export class TodosState {
   @Action(CompleteTodo)
   public complete(ctx: StateContext<TodosStateModel>, {payload}: CompleteTodo) {
     const stateModel = ctx.getState();
-    stateModel.todos.map(todo => {
+    stateModel.todos = stateModel.todos.map(todo => {
       if (todo.id === payload.id) {
         return Object.assign({}, payload, {
-          completed: !payload.completed
+          completed: !todo.completed
         });
       }
       return todo;
@@ -52,7 +52,7 @@ export class TodosState {
   @Action(DeleteTodo)
   public delete(ctx: StateContext<TodosStateModel>, {payload}: DeleteTodo) {
     const stateModel = ctx.getState();
-    stateModel.todos.filter(todo => todo.id !== payload);
+    stateModel.todos = stateModel.todos.filter(todo => todo.id !== payload);
     ctx.setState(stateModel);
   }
 }
