@@ -17,11 +17,11 @@ export class TodoListComponent implements OnInit {
   ngOnInit() {
   }
 
-  complete(todo: any) {
+  complete(todo: TodoItem) {
     this.store.dispatch(new CompleteTodo(todo));
   }
 
-  delete(id: any) {
+  delete(id: string) {
     this.store.dispatch(new DeleteTodo(id));
   }
 

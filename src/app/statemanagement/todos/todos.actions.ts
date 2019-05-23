@@ -7,10 +7,10 @@ export class AddTodo {
 
 export class CompleteTodo {
   public static readonly type = '[Todos] Complete item';
-  constructor(public todo: TodoItem) {  }
+  constructor(public payload: TodoItem) {  }
 }
 
 export class DeleteTodo {
   public static readonly type = '[Todos] Delete item';
-  constructor(public id: string) { }
+  constructor(public payload: string) { }
 }
